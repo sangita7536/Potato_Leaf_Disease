@@ -4,10 +4,11 @@ import numpy as np
 import gdown
 import os
 
-file_id = "1y4Irea1AaXO2h6BrYkh79L4xNPWqCZfv"
-url = "https://drive.google.com/file/d/" + file_id
+file_id = "1wAangUK3NGUJ_OR0_D6CLN_sgDmaw00m"
+url = f"https://drive.google.com/uc?id={file_id}"
 model_path = "trained_plant_disease_model.keras"
 
+# Download the model if it doesn't exist
 if not os.path.exists(model_path):
     st.warning("Downloading model from drive...")
     gdown.download(url, model_path, quiet=False)
@@ -16,14 +17,27 @@ if not os.path.exists(model_path):
     else:
         st.error("Failed to download the model.")
 
+# Verify the model file exists
+if not os.path.exists(model_path):
+    st.error(f"Model file not found at: {os.path.abspath(model_path)}")
+else:
+    st.success(f"Model file found at: {os.path.abspath(model_path)}")
+
 def model_prediction(test_image):
-    model = tf.keras.models.load_model(model_path)
+    try:
+        model = tf.keras.models.load_model(model_path)
+        st.success("Model loaded successfully!")
+    except Exception as e:
+        st.error(f"Error loading model: {e}")
+        return None
+
     image = tf.keras.preprocessing.image.load_img(test_image, target_size=(128, 128))
     input_arr = tf.keras.preprocessing.image.img_to_array(image)
     input_arr = np.array([input_arr])  # Convert single image to batch
     predictions = model.predict(input_arr)
     return np.argmax(predictions)  # Return index of max element
 
+# Streamlit app
 st.sidebar.title("Plant Disease System for Sustainable Agriculture")
 app_mode = st.sidebar.selectbox('Select Page', ['Home', 'Disease Recognition'])
 
@@ -46,10 +60,11 @@ elif app_mode == 'Disease Recognition':
             st.snow()
             st.write('Our Prediction')
             # Save the uploaded file temporarily
-            with open("test_image.jpg", "wb") as f:
+            with open("temp_image.jpg", "wb") as f:
                 f.write(test_image.getbuffer())
             
             # Pass the saved file path to the model_prediction function
-            result_index = model_prediction("test_image.jpg")
-            class_name = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
-            st.success('Model is predicting it\'s a {}'.format(class_name[result_index]))
+            result_index = model_prediction("temp_image.jpg")
+            if result_index is not None:
+                class_name = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
+                st.success(f'Model is predicting it\'s a {class_name[result_index]}')
