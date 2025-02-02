@@ -5,7 +5,7 @@ import gdown
 import os
 
 file_id = "1wAangUK3NGUJ_OR0_D6CLN_sgDmaw00m"
-url = "https://drive.google.com/file/d/1wAangUK3NGUJ_OR0_D6CLN_sgDmaw00m/view?usp=sharing"
+url = "https://drive.google.com/file/d/1wAangUK3NGUJ_OR0_D6CLN_sgDmaw00m"
 model_path = "trained_plant_disease_model.keras"
 
 if not os.path.exists(model_path):

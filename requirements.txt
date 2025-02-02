@@ -1,6 +1,6 @@
 streamlit
-transformers
 tensorflow
-nltk
 tf-keras
 gdown
+opencv_python_headless
+keras
