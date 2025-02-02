@@ -10,7 +10,7 @@ model_path = "trained_plant_disease_model.keras"
 
 if not os.path.exists(model_path):
     st.warning("Downloding model from drive...")
-    gdown.download(url,model_path,quite=False)
+    gdown.download(url,model_path,quiet=False)
 
 model_path = "trained_plant_disease_model.keras"
 def model_prediction(test_image):
