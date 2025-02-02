@@ -10,12 +10,15 @@ model_path = "trained_plant_disease_model.keras"
 
 # Download the model if it doesn't exist
 if not os.path.exists(model_path):
-    st.warning("Downloading model from drive...")
-    gdown.download(url, model_path, quiet=False)
-    if os.path.exists(model_path):
-        st.success("Model downloaded successfully!")
-    else:
-        st.error("Failed to download the model.")
+    st.warning("Downloading model from Google Drive...")
+    try:
+        gdown.download(url, model_path, quiet=False)
+        if os.path.exists(model_path):
+            st.success("Model downloaded successfully!")
+        else:
+            st.error("Failed to download the model.")
+    except Exception as e:
+        st.error(f"Download failed: {e}")
 
 # Verify the model file exists
 if not os.path.exists(model_path):
