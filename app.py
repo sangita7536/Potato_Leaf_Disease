@@ -4,8 +4,8 @@ import numpy as np
 import gdown
 import os
 
-file_id = "1wAangUK3NGUJ_OR0_D6CLN_sgDmaw00m"
-url = "https://drive.google.com/uc?id=" + file_id
+file_id = "1y4Irea1AaXO2h6BrYkh79L4xNPWqCZfv"
+url = "https://drive.google.com/file/d/" + file_id
 model_path = "trained_plant_disease_model.keras"
 
 if not os.path.exists(model_path):
