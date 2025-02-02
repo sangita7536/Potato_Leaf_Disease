@@ -46,10 +46,10 @@ elif app_mode == 'Disease Recognition':
             st.snow()
             st.write('Our Prediction')
             # Save the uploaded file temporarily
-            with open("temp_image.jpg", "wb") as f:
+            with open("test_image.jpg", "wb") as f:
                 f.write(test_image.getbuffer())
             
             # Pass the saved file path to the model_prediction function
-            result_index = model_prediction("temp_image.jpg")
+            result_index = model_prediction("test_image.jpg")
             class_name = ['Potato___Early_blight', 'Potato___Late_blight', 'Potato___healthy']
             st.success('Model is predicting it\'s a {}'.format(class_name[result_index]))
