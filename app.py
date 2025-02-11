@@ -17,10 +17,6 @@ try:
 except Exception as e:
     st.error(f"Download failed: {e}")
 
-if not os.path.exists(model_path):
-    st.error(f"Model file not found at: {os.path.abspath(model_path)}")
-else:
-    st.success(f"Model file found at: {os.path.abspath(model_path)}")
 
 def model_prediction(test_image):
     try:
