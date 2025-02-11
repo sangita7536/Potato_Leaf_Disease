@@ -8,15 +8,18 @@ file_id = "1wAangUK3NGUJ_OR0_D6CLN_sgDmaw00m"
 url = f"https://drive.google.com/uc?id={file_id}"
 model_path = "trained_plant_disease_model.keras"
 
-try:
-    gdown.download(url, model_path, quiet=False)
-    if os.path.exists(model_path):
-        st.success("Model downloaded successfully!")
-    else:
-        st.error("Failed to download the model.")
-except Exception as e:
-    st.error(f"Download failed: {e}")
-
+# Download the model if it doesn't exist
+if not os.path.exists(model_path):
+    st.warning("Downloading model from Google Drive...")
+    try:
+        gdown.download(url, model_path, quiet=False)
+        if os.path.exists(model_path):
+            st.success("Model downloaded successfully!")
+        else:
+            
+            st.error("Failed to download the model.")
+    except Exception as e:
+        st.error(f"Download failed: {e}")
 
 def model_prediction(test_image):
     try:
@@ -32,7 +35,7 @@ def model_prediction(test_image):
     predictions = model.predict(input_arr)
     return np.argmax(predictions)  # Return index of max element
 
-
+# Streamlit app
 st.sidebar.title("Plant Disease System for Sustainable Agriculture")
 app_mode = st.sidebar.selectbox('Select Page', ['Home', 'Disease Recognition'])
 
