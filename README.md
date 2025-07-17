@@ -10,10 +10,13 @@ This project is a deep learning-based web application built using **Streamlit** 
 
 ---
 
-## 📂 Project Structure
+---
 
-Potato_Leaf_Disease/
-├── Train_potato_disease.ipynb # Model training notebook
-├── app.py # Streamlit application
-├── diseases.png # Reference image used in app/README
-├── requirements.txt # Python dependencies
+## 🚀 How to Run Locally
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/sangita7536/Potato_Leaf_Disease.git
+   cd Potato_Leaf_Disease
+
+
