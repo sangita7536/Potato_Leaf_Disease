@@ -19,15 +19,16 @@ This project is a deep learning-based web application built using **Streamlit** 
    git clone https://github.com/sangita7536/Potato_Leaf_Disease.git
    cd Potato_Leaf_Disease
 2. **Create and Activate Virtual Environment (optional but recommended)**
- ```bash
+   ```bash
    python -m venv venv
    source venv/bin/activate
    On Windows: venv\Scripts\activate
 4. **Install Dependencies**
-```bash
+   ```bash
    pip install -r requirements.txt
-```bash
+
 5. **Run the Streamlit App**
+   ```bash
    streamlit run app.py
 
 
